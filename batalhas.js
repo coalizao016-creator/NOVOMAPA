@@ -1,5 +1,6 @@
 const batalhas = [
   {
+    codigo: "BAT001",
     nome: "Coalizão - 016",
     cidade: "Ribeirão Preto - SP",
     dia: "Sexta-feira",
@@ -7,6 +8,7 @@ const batalhas = [
     rede: "https://instagram.com/coalizao016"
   },
   {
+    codigo: "BAT002",
     nome: "Batalha da Vinte",
     cidade: "Orlândia - SP",
     dia: "Sábado",
@@ -14,6 +16,7 @@ const batalhas = [
     rede: "https://www.instagram.com/bdvinte_?igsh=ZnJmcjZha3IzeWhk"
   },
   {
+    codigo: "BAT003",
     nome: "BATALHA DA SO",
     cidade: "Sales Oliveira - SP",
     dia: "Domingo",
@@ -21,6 +24,7 @@ const batalhas = [
     rede: "https://www.instagram.com/batalhas.o_/"
   },
   {
+    codigo: "BAT004",
     nome: "Conexão de Rimas",
     cidade: "São Joaquim da Barra - SP",
     dia: "Sexta-feira",
@@ -28,6 +32,7 @@ const batalhas = [
     rede: "https://www.instagram.com/conexao_de_rima?igsh=YXZjZHR2NHN2Nzl5&utm_source=qr_/"
   },
   {
+    codigo: "BAT005",
     nome: "Batalha do um porcento",
     cidade: "Monte Alto - SP",
     dia: "Domingo",
@@ -35,6 +40,7 @@ const batalhas = [
     rede: "https://www.instagram.com/batalhadomorro016?igsh=MTJoMXU3MmQ1dTdheQ==/"
   },
   {
+    codigo: "BAT006",
     nome: "DUELO DA 3 - DD3",
     cidade: "Sertãozinho - SP",
     dia: "Sexta-feira",
@@ -42,6 +48,7 @@ const batalhas = [
     rede: "https://www.instagram.com/dueloda3/"
   },
   {
+    codigo: "BAT007",
     nome: "BATALHA DO MORRO",
     cidade: "Morro Agudo - SP",
     dia: "Domingo",
@@ -49,6 +56,7 @@ const batalhas = [
     rede: "https://www.instagram.com/batalhadomorro016?igsh=MTJoMXU3MmQ1dTdheQ==/"
   },
   {
+    codigo: "BAT008",
     nome: "Batalha H2S",
     cidade: "São Carlos - SP",
     dia: "Sábado",
@@ -56,6 +64,7 @@ const batalhas = [
     rede: "https://www.instagram.com/hiphopsalva016/"
   },
   {
+    codigo: "BAT009",
     nome: "BATALHA DA FONTE",
     cidade: "Araraquara - SP",
     dia: "Domingo",
@@ -63,6 +72,7 @@ const batalhas = [
     rede: "https://www.instagram.com/batalhafonte/"
   },
   {
+    codigo: "BAT010",
     nome: "Rap Na Alta",
     cidade: "Matão - SP",
     dia: "Domingo",
@@ -70,10 +80,27 @@ const batalhas = [
     rede: "https://www.instagram.com/rap.naalta/"
   },
   {
+    codigo: "BAT011",
     nome: "Batalha do Raio",
     cidade: "Araraquara - SP",
     dia: "Domingo",
     coords: [-21.78291992749133, -48.17927539370365],
     rede: "https://www.instagram.com/batalhadoraio?igsh=MWQ1ejlkMzJpa243MQ%3D%3D&utm_source=qr"
+  },
+  {
+    codigo: "BAT012",
+    nome: "Batalha do Bença",
+    cidade: "Ribeirão Preto - SP",
+    dia: "Segunda-feira",
+    coords: [-21.212927282771425, -47.824989754917254],
+    rede: "https://www.instagram.com/batalhadobenca?igsh=d2JkaDdyOGtjNnBj"
+  },
+  {
+    codigo: "BAT013",
+    nome: "Batalha do Pico",
+    cidade: "Ribeirão Preto - SP",
+    dia: "Domingo",
+    coords: [-21.144083121343485, -47.854573834343995],
+    rede: "https://www.instagram.com/batalhadopicorp/"
   }
 ];
