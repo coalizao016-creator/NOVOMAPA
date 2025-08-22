@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mapa de Batalhas - Coalizão 016</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f5f5f5;
+    }
+    h1 {
+      margin: 10px;
+    }
+    #filtros {
+      padding: 10px;
+      background: #fff;
+      border-bottom: 1px solid #ccc;
+    }
+    #map {
+      height: 80vh;
+      width: 100%;
+    }
+    select {
+      padding: 5px;
+      font-size: 14px;
+      margin-left: 5px;
+    }
+    label {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Mapa de Batalhas — Coalizão 016</h1>
+
+  <div id="filtros">
+    <label for="filtroDia">Filtrar por Dia:</label>
+    <select id="filtroDia">
+      <option value="">Todos</option>
+      <option value="Sexta-feira">Sexta-feira</option>
+      <option value="Sábado">Sábado</option>
+      <option value="Domingo">Domingo</option>
+    </select>
+
+    <label for="filtroCidade" style="margin-left:20px;">Filtrar por Cidade:</label>
+    <select id="filtroCidade">
+      <option value="">Todas</option>
+    </select>
+  </div>
+
+  <div id="map"></div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="batalhas.js"></script>
+  <script>
+    // Inicializa o mapa
+    const map = L.map("map").setView([-21.17, -47.81], 9);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "© OpenStreetMap contributors"
+    }).addTo(map);
+
+    // Array para guardar marcadores
+    let markers = [];
+
+    // Função para adicionar marcadores com filtros
+    function renderMarkers(filtroDia = "", filtroCidade = "") {
+      // Remove marcadores antigos
+      markers.forEach(m => map.removeLayer(m));
+      markers = [];
+
+      batalhas.forEach(b => {
+        if ((filtroDia === "" || b.dia === filtroDia) &&
+            (filtroCidade === "" || b.cidade === filtroCidade)) {
+          
+          const marker = L.marker(b.coords).addTo(map);
+          markers.push(marker);
+
+          const mapsLink = `https://www.google.com/maps?q=${b.coords[0]},${b.coords[1]}`;
+          const popupContent = `
+            <div style="text-align: left; font-family: Arial, sans-serif;">
+              <h3 style="margin: 5px 0; font-size: 16px;">${b.nome}</h3>
+              <p style="margin: 2px 0;"><b>Cidade:</b> ${b.cidade}</p>
+              <p style="margin: 2px 0;"><b>Dia:</b> ${b.dia}</p>
+              <p style="margin: 2px 0;">
+                <b>Instagram:</b> 
+                <a href="${b.rede}" target="_blank" style="color: #0077cc; text-decoration: none;">Abrir Perfil</a>
+              </p>
+              <p style="margin: 2px 0;">
+                <b>Google Maps:</b> 
+                <a href="${mapsLink}" target="_blank" style="color: #0077cc; text-decoration: none;">Ver Localização</a>
+              </p>
+            </div>
+          `;
+          marker.bindPopup(popupContent);
+        }
+      });
+
+      // Ajusta zoom
+      if (markers.length > 0) {
+        const bounds = L.latLngBounds(markers.map(m => m.getLatLng()));
+        map.fitBounds(bounds.pad(0.2));
+      }
+    }
+
+    // Preencher filtro de cidades automaticamente
+    const filtroCidade = document.getElementById("filtroCidade");
+    const cidadesUnicas = [...new Set(batalhas.map(b => b.cidade))].sort();
+    cidadesUnicas.forEach(cidade => {
+      const opt = document.createElement("option");
+      opt.value = cidade;
+      opt.textContent = cidade;
+      filtroCidade.appendChild(opt);
+    });
+
+    // Eventos dos filtros
+    document.getElementById("filtroDia").addEventListener("change", e => {
+      renderMarkers(e.target.value, filtroCidade.value);
+    });
+    filtroCidade.addEventListener("change", e => {
+      renderMarkers(document.getElementById("filtroDia").value, e.target.value);
+    });
+
+    // Render inicial
+    renderMarkers();
+  </script>
+</body>
+</html>
